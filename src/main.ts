@@ -7,6 +7,8 @@ async function run(): Promise<void> {
 
     core.debug(`Query: ${query}`)
     core.debug(`Variables: ${variables}`)
+
+
   } catch (error) {
     core.setFailed(error.message)
   }
