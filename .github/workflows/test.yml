@@ -57,3 +57,7 @@ jobs:
                 }
               }
             }
+          variables: |
+            {
+              "name": "$ONTRACK_GITHUB_REPOSITORY"
+            }
