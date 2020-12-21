@@ -1,11 +1,16 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'ontrack-graphql'
+description: 'GitHub action to interact with the Ontrack GraphQL API'
+author: 'Damien Coraboeuf'
 inputs:
-  milliseconds: # change this
+  query:
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: 'GraphQL Query or Mutation'
+  variables:
+    required: false
+    description: 'GraphQL variables (map)'
+outputs:
+  data:
+    description: 'GraphQL data node returned by the query or mutation. All errors will have already been processed.'
 runs:
   using: 'node12'
   main: 'dist/index.js'
