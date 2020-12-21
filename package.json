@@ -1,7 +1,7 @@
 {
-  "name": "javascript-action",
+  "name": "ontrack-github-action-graphql",
   "version": "1.0.0",
-  "description": "JavaScript Action Template",
+  "description": "GitHub action to interact with the GraphQL API.",
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
@@ -25,7 +25,8 @@
   },
   "homepage": "https://github.com/actions/javascript-action#readme",
   "dependencies": {
-    "@actions/core": "^1.2.5"
+    "@actions/core": "^1.2.5",
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.25.1",

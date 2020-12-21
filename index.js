@@ -1,4 +1,5 @@
 const core = require('@actions/core');
+const graphql = require('./graphql');
 
 async function run() {
     const query = core.getInput('query');
@@ -6,6 +7,16 @@ async function run() {
 
     core.debug(`Query: ${query}`);
     core.debug(`Variables: ${variables}`);
+
+    const vars = JSON.parse(variables);
+
+    graphql(query, vars)
+        .then((data) => {
+            core.setOutput('data', data);
+        })
+        .catch((err) => {
+            core.setFailed(err.message);
+        });
 }
 
 run();
