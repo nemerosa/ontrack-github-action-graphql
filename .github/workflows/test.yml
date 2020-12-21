@@ -19,6 +19,37 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ./
+      - uses: nemerosa/ontrack-github-action-init@v0
+      - name: Get project list
+        uses: ./
         with:
-          milliseconds: 1000
+          query: |
+            query ProjectList {
+              projects {
+                name
+              }
+            }
+      - name: Get project by name
+        uses: ./
+        with:
+          query: |
+            query ProjectByName($name: String!) {
+              projects(name: $name) {
+                name
+              }
+            }
+          variables: |
+            {
+              "name": "ontrack"
+            }
+      - name: Creates or get the current project
+        uses: ./
+        with:
+          query: |
+            mutation ProjectSetup($name: String!) {
+              createProjectOrGet(name: $name) {
+                project {
+                  id
+                }
+              }
+            }
