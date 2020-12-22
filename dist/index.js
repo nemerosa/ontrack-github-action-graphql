@@ -29,13 +29,17 @@ let graphql = async function (query, vars) {
     )
         .then((response) => response.json())
         .then((json) => {
-            const data = json.data;
-            const errors = json.errors;
-            if (errors && errors.length > 0) {
-                const error = errors[0];
-                throw new Error(error.message);
+            if (json.status && json.message) {
+                throw new Error(`HTTP ${json.status}: ${json.message}`)
             } else {
-                return data;
+                const data = json.data;
+                const errors = json.errors;
+                if (errors && errors.length > 0) {
+                    const error = errors[0];
+                    throw new Error(error.message);
+                } else {
+                    return data;
+                }
             }
         });
 };
