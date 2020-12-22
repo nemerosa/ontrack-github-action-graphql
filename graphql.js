@@ -6,7 +6,7 @@ let graphql = async function (query, vars) {
 
     const fetchUrl = `${url}/graphql`;
 
-    const response = await fetch(
+    return fetch(
         fetchUrl, {
             method: 'POST',
             headers: {
@@ -19,9 +19,8 @@ let graphql = async function (query, vars) {
                 variables: vars
             })
         }
-    );
-
-    return response.json()
+    )
+        .then((response) => response.json())
         .then((json) => {
             const data = json.data;
             const errors = json.errors;
