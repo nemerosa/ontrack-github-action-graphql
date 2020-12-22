@@ -8,7 +8,10 @@ async function run() {
     core.debug(`Query: ${query}`);
     core.debug(`Variables: ${variables}`);
 
-    const vars = JSON.parse(variables);
+    let vars = {};
+    if (variables && variables.trim()) {
+        vars = JSON.parse(variables);
+    }
 
     graphql(query, vars)
         .then((data) => {
