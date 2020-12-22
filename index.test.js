@@ -17,3 +17,12 @@ test('Ontrack token is required', async () => {
     process.env['ONTRACK_TOKEN'] = '';
     await expect(graphql(PROJECT_LIST, {})).rejects.toThrow('ONTRACK_TOKEN environment variable is required.');
 });
+
+describe('Ontrack is configured', () => {
+
+    test('Getting list of projects', async () => {
+        const data = await expect(graphql(PROJECT_LIST, {})).resolves.toBeDefined();
+        console.log("data = ", data);
+    });
+
+});
